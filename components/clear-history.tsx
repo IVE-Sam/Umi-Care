@@ -42,7 +42,7 @@ export function ClearHistory({
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogTitle>Are you sure?</AlertDialogTitle>
           <AlertDialogDescription>
             This will permanently delete your chat history and remove your data
             from our servers.
@@ -64,6 +64,7 @@ export function ClearHistory({
                 setOpen(false)
               })
             }}
+            className="bg-red-500 hover:bg-red-600 text-white"
           >
             {isPending && <IconSpinner className="mr-2 animate-spin" />}
             Delete

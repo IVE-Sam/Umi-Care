@@ -33,27 +33,23 @@ export function ChatPanel({
   const [messages, setMessages] = useUIState<typeof AI>()
   const { submitUserMessage } = useActions()
   const [shareDialogOpen, setShareDialogOpen] = React.useState(false)
-
+  
   const exampleMessages = [
     {
-      heading: 'What are the',
-      subheading: 'trending memecoins today?',
-      message: `What are the trending memecoins today?`
+      heading: 'I have a headache',
+      message: 'I have a headache'
     },
     {
-      heading: 'What is the price of',
-      subheading: '$DOGE right now?',
-      message: 'What is the price of $DOGE right now?'
+      heading: 'What are the side effects of my medication',
+      message: 'What are the side effects of my medication'
     },
     {
-      heading: 'I would like to buy',
-      subheading: '42 $DOGE',
-      message: `I would like to buy 42 $DOGE`
+      heading: 'What preventive measures should I take',
+      message: 'What preventive measures should I take'
     },
     {
-      heading: 'What are some',
-      subheading: `recent events about $DOGE?`,
-      message: `What are some recent events about $DOGE?`
+      heading: 'What are my out-of-pocket expenses',
+      message: 'What are my out-of-pocket expenses'
     }
   ]
 
@@ -63,8 +59,14 @@ export function ChatPanel({
         isAtBottom={isAtBottom}
         scrollToBottom={scrollToBottom}
       />
-
-      <div className="mx-auto sm:max-w-2xl sm:px-4">
+      
+      {messages.length === 0 && (
+        <div className="flex flex-col items-center max-w-2xl mx-auto gap-5 rounded-lg border bg-background p-8 mb-2">
+          <h1 className="text-lg font-semibold">Common Questions</h1>
+        </div>
+      )}
+      
+      <div className="mx-auto sm:max-w-2xl sm:px-0">
         <div className="mb-4 grid grid-cols-2 gap-2 px-4 sm:px-0">
           {messages.length === 0 &&
             exampleMessages.map((example, index) => (
@@ -93,9 +95,6 @@ export function ChatPanel({
                 }}
               >
                 <div className="text-sm font-semibold">{example.heading}</div>
-                <div className="text-sm text-zinc-600">
-                  {example.subheading}
-                </div>
               </div>
             ))}
         </div>

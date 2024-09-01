@@ -81,7 +81,7 @@ export function SidebarActions({
       <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
             <AlertDialogDescription>
               This will permanently delete your chat message and remove your
               data from our servers.
@@ -113,6 +113,7 @@ export function SidebarActions({
                   toast.success('Chat deleted')
                 })
               }}
+              className="bg-red-500 hover:bg-red-600 text-white"
             >
               {isRemovePending && <IconSpinner className="mr-2 animate-spin" />}
               Delete

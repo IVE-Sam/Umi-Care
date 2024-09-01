@@ -35,6 +35,24 @@ export default function SignupForm() {
           <div>
             <label
               className="mb-3 mt-5 block text-xs font-medium text-zinc-400"
+              htmlFor="name"
+            >
+              Name
+            </label>
+            <div className="relative">
+              <input
+                className="peer block w-full rounded-md border bg-zinc-50 px-2 py-[9px] text-sm outline-none placeholder:text-zinc-500 dark:border-zinc-800 dark:bg-zinc-950"
+                id="name"
+                type="text"
+                name="name"
+                placeholder="Enter your name"
+                required
+              />
+            </div>
+          </div>
+          <div>
+            <label
+              className="mb-3 mt-5 block text-xs font-medium text-zinc-400"
               htmlFor="email"
             >
               Email
@@ -65,7 +83,7 @@ export default function SignupForm() {
                 name="password"
                 placeholder="Enter password"
                 required
-                minLength={6}
+                minLength={8}
               />
             </div>
           </div>
@@ -89,7 +107,7 @@ function LoginButton() {
       className="my-4 flex h-10 w-full flex-row items-center justify-center rounded-md bg-zinc-900 p-2 text-sm font-semibold text-zinc-100 hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"
       aria-disabled={pending}
     >
-      {pending ? <IconSpinner /> : 'Create account'}
+      {pending ? <IconSpinner /> : 'Create an account'}
     </button>
   )
 }

@@ -78,6 +78,7 @@ export function ChatShareDialog({
                 copyShareLink(result)
               })
             }}
+            className="bg-green-400 hover:bg-green-500 text-white"
           >
             {isSharePending ? (
               <>

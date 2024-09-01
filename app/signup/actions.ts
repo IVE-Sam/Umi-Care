@@ -8,6 +8,7 @@ import { getUser } from '../login/actions'
 import { AuthError } from 'next-auth'
 
 export async function createUser(
+  name: string,
   email: string,
   hashedPassword: string,
   salt: string
@@ -22,6 +23,7 @@ export async function createUser(
   } else {
     const user = {
       id: crypto.randomUUID(),
+      name,
       email,
       password: hashedPassword,
       salt
@@ -45,15 +47,18 @@ export async function signup(
   _prevState: Result | undefined,
   formData: FormData
 ): Promise<Result | undefined> {
+  const name = formData.get('name') as string
   const email = formData.get('email') as string
   const password = formData.get('password') as string
 
   const parsedCredentials = z
     .object({
+      name: z.string().min(1),
       email: z.string().email(),
-      password: z.string().min(6)
+      password: z.string().min(8)
     })
     .safeParse({
+      name,
       email,
       password
     })
@@ -70,7 +75,7 @@ export async function signup(
     const hashedPassword = getStringFromBuffer(hashedPasswordBuffer)
 
     try {
-      const result = await createUser(email, hashedPassword, salt)
+      const result = await createUser(name, email, hashedPassword, salt)
 
       if (result.resultCode === ResultCode.UserCreated) {
         await signIn('credentials', {
